@@ -4,10 +4,17 @@ import { Route } from 'react-router-dom';
 import './App.css'
 import Library from './Library'
 import Search from './Search';
+import * as api from './BooksAPI';
 
 class BooksApp extends React.Component {
   state = {
   }
+
+  componentWillMount = () => {
+    api.getAll()
+      .then(books => this.setState({ books }));
+  }
+  
 
   render() {
     return (
