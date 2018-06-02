@@ -10,19 +10,13 @@ class Shelf extends Component {
                 <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.props.books.map(b => (
+                        {this.props.books.map(book => (
                             <Book 
-                                title={b.title} 
-                                cover={b.imageLinks.thumbnail}
-                                authors={b.authors}
+                                book={book}
+                                key={book.id}
+                                handleSelect={this.props.handleSelect}
                             />
                         ))}
-                        {   
-                            /**
-                            * TO-DO:
-                            * - Map through books that match shelf title
-                            *   */
-                        }
                     </ol>
                 </div>
             </div>
@@ -32,7 +26,8 @@ class Shelf extends Component {
 
 Shelf.propTypes = {
     title: PropTypes.string.isRequired,
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    handleSelect: PropTypes.func.isRequired
 }
 
 export default Shelf;

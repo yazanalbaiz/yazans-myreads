@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 
 class Dropdown extends Component {
 
+    onSelect = (e) => {
+        this.props.handleSelect(this.props.book, e.target.value);
+    }
+
     render() {
         return (
             <div className="book-shelf-changer">
-                <select>
+                <select value={this.props.status} onChange={this.onSelect}>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
@@ -20,7 +24,8 @@ class Dropdown extends Component {
 
 Dropdown.propTypes = {
     status: PropTypes.string.isRequired,
-    onSelect: PropTypes.func.isRequired
+    book: PropTypes.object.isRequired,
+    handleSelect: PropTypes.func.isRequired
 }
 
 export default Dropdown;

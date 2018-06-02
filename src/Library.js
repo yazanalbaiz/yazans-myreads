@@ -14,9 +14,27 @@ class Library extends Component {
           </div>
           <div className="list-books-content">
             <div>
-              <Shelf books={this.props.books} title='Currently Reading' />
-              <Shelf books={this.props.books} title='Want to Read' />
-              <Shelf books={this.props.books} title='Read' />
+              <Shelf
+                handleSelect={this.props.handleSelect}
+                books={this.props.books.filter(book => (
+                  book.shelf === 'currentlyReading'
+                ))} 
+                title='Currently Reading' 
+              />
+              <Shelf
+                handleSelect={this.props.handleSelect} 
+                books={this.props.books.filter(book => (
+                  book.shelf === 'wantToRead'
+                ))} 
+                title='Want to Read' 
+              />
+              <Shelf 
+                handleSelect={this.props.handleSelect}
+                books={this.props.books.filter(book => (
+                  book.shelf === 'read'
+                ))} 
+                title='Read' 
+              />
             </div>
           </div>
           <div className="open-search">
@@ -29,6 +47,7 @@ class Library extends Component {
 
 Library.propTypes = {
   books: PropTypes.array.isRequired,
+  handleSelect: PropTypes.func.isRequired
 }
 
 export default Library;

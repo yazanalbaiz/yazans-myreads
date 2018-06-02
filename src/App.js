@@ -11,17 +11,27 @@ class BooksApp extends React.Component {
     books: []
   }
 
-  componentWillMount = () => {
+  componentWillMount = async () => {
     api.getAll()
       .then(books => this.setState({ books }));
   }
   
+  handleSelect = (book, shelf) => {
+    api.update(book, shelf)
+      .then(() => {
+        api.getAll()
+          .then(books => this.setState({ books }));
+      });
+  }
 
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <Library books={this.state.books}/>
+          <Library 
+            handleSelect={this.handleSelect}
+            books={this.state.books}
+          />
         )}/>
         <Route exact path="/search" render={() => (
           <Search/>
