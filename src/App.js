@@ -8,10 +8,12 @@ import * as api from './BooksAPI';
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    query: '',
+    searchItems: []
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     api.getAll()
       .then(books => this.setState({ books }));
   }
@@ -24,6 +26,19 @@ class BooksApp extends React.Component {
       });
   }
 
+  handleInput = (e) => {
+    const query = e.target.value.trim();
+    this.setState({ query });
+    if (query !== '') {
+      api.search(query)
+      .then(async searchItems => {
+        if (!searchItems.error) this.setState({ searchItems });
+      });
+    } else {
+      this.setState({ searchItems: [] })
+    }
+  }
+
   render() {
     return (
       <div className="app">
@@ -34,7 +49,12 @@ class BooksApp extends React.Component {
           />
         )}/>
         <Route exact path="/search" render={() => (
-          <Search/>
+          <Search
+            query={this.state.query}
+            handleInput={this.handleInput}
+            results={this.state.searchItems}
+            handleSelect={this.handleSelect}
+          />
         )} />
       </div>
     )

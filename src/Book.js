@@ -5,9 +5,8 @@ import Dropdown from './Dropdown';
 class Book extends Component {
 
     render() {
-        const { title, authors, shelf } = this.props.book;
+        const { title, authors = [], shelf } = this.props.book;
         const { thumbnail } = this.props.book.imageLinks;
-
         return (
             <div className="book">
                 <div className="book-top">

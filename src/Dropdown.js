@@ -8,9 +8,11 @@ class Dropdown extends Component {
     }
 
     render() {
+        const { status = 'none' } = this.props;
+        
         return (
             <div className="book-shelf-changer">
-                <select value={this.props.status} onChange={this.onSelect}>
+                <select value={status} onChange={this.onSelect}>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
@@ -23,7 +25,7 @@ class Dropdown extends Component {
 }
 
 Dropdown.propTypes = {
-    status: PropTypes.string.isRequired,
+    status: PropTypes.string,
     book: PropTypes.object.isRequired,
     handleSelect: PropTypes.func.isRequired
 }
