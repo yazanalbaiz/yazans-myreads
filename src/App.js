@@ -8,6 +8,7 @@ import * as api from './BooksAPI';
 
 class BooksApp extends React.Component {
   state = {
+    books: []
   }
 
   componentWillMount = () => {
@@ -20,7 +21,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <Library/>
+          <Library books={this.state.books}/>
         )}/>
         <Route exact path="/search" render={() => (
           <Search/>

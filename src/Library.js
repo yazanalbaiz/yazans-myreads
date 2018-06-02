@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 //Make it a shelves compnent holder
 import Shelf from './Shelf';
+import PropTypes from 'prop-types';
 
 class Library extends Component {
 
@@ -13,9 +14,9 @@ class Library extends Component {
           </div>
           <div className="list-books-content">
             <div>
-              <Shelf title='Currently Reading' />
-              <Shelf title='Want to Read' />
-              <Shelf title='Read' />
+              <Shelf books={this.props.books} title='Currently Reading' />
+              <Shelf books={this.props.books} title='Want to Read' />
+              <Shelf books={this.props.books} title='Read' />
             </div>
           </div>
           <div className="open-search">
@@ -24,6 +25,10 @@ class Library extends Component {
         </div>
         );
     }
+}
+
+Library.propTypes = {
+  books: PropTypes.array.isRequired,
 }
 
 export default Library;

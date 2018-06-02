@@ -10,6 +10,13 @@ class Shelf extends Component {
                 <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
+                        {this.props.books.map(b => (
+                            <Book 
+                                title={b.title} 
+                                cover={b.imageLinks.thumbnail}
+                                authors={b.authors}
+                            />
+                        ))}
                         {   
                             /**
                             * TO-DO:
