@@ -7,14 +7,18 @@ class Shelf extends Component {
     render() {
         return (
             <div className="bookshelf">
-            <h2 className="bookshelf-title">{this.props.title}</h2>
-            <div className="bookshelf-books">
-              {/**
-                * TO-DO:
-                * - Map through books that match shelf title
-                *   */}
+                <h2 className="bookshelf-title">{this.props.title}</h2>
+                <div className="bookshelf-books">
+                    <ol className="books-grid">
+                        {   
+                            /**
+                            * TO-DO:
+                            * - Map through books that match shelf title
+                            *   */
+                        }
+                    </ol>
+                </div>
             </div>
-          </div>
         );
     }
 }
