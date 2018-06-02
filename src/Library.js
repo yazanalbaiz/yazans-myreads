@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+//Make it a shelves compnent holder
+import Shelf from './Shelf';
 
 class Library extends Component {
 
