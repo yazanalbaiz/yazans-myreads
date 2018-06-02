@@ -7,6 +7,8 @@ import Search from './Search';
 import * as api from './BooksAPI';
 
 class BooksApp extends React.Component {
+  //My app maintains one store as state for all components mimicing redux
+  //I would've used redux but I had no time
   state = {
     books: [],
     query: '',

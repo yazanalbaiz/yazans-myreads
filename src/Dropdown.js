@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Dropdown extends Component {
-
+    //This method passes the book and the shelf value to the handler
     onSelect = (e) => {
         this.props.handleSelect(this.props.book, e.target.value);
     }
 
     render() {
         const { status = 'none' } = this.props;
-        
+
         return (
             <div className="book-shelf-changer">
                 <select value={status} onChange={this.onSelect}>

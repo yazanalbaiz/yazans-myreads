@@ -5,8 +5,13 @@ import Dropdown from './Dropdown';
 class Book extends Component {
 
     render() {
+        //Filler image when no thmbnail is found
+        let filler = new Image();
+        filler.src = './img/filler.png';
+
         const { title, authors = [], shelf } = this.props.book;
-        const { thumbnail } = this.props.book.imageLinks;
+        const { thumbnail } = this.props.book.imageLinks || filler;
+        
         return (
             <div className="book">
                 <div className="book-top">
