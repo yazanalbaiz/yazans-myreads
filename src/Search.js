@@ -6,7 +6,8 @@ import Book from './Book';
 class Search extends Component {
   //This method only displays the books if there are any
     displayBooks = () => {
-      if (this.props.results.length > 0) {
+      console.log(this.props.results)
+      if (this.props.results && this.props.results.length > 0) {
         return this.props.results.map(book => 
             (
               <li key={book.id}>
@@ -16,7 +17,7 @@ class Search extends Component {
                 />
               </li>
           )
-        )
+        );
       } else {
         return <span>No Results</span>;
       }
