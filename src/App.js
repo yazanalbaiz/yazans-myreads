@@ -31,11 +31,13 @@ class BooksApp extends React.Component {
   handleInput = (e) => {
     const query = e.target.value.trim();
     this.setState({ query });
-    api.search(query)
+    if (query !== '') {
+      api.search(query)
       .then(searchItems => this.setState({ searchItems }))
-      .catch(err => {console.log(err)
-        this.setState({ searchItems: [] })
-      })
+      .catch(err =>  this.setState({ searchItems: [] }));
+    } else {
+      this.setState({ searchItems: [] });
+    }
     // if (query !== '') {
     //   api.search(query)
     //   .then(async searchItems => {
@@ -59,7 +61,10 @@ class BooksApp extends React.Component {
           <Search
             query={this.state.query}
             handleInput={this.handleInput}
-            results={this.state.searchItems || []}
+            results={(() => {
+              if (Object.keys(this.state.searchItems).length <= 2) return [];
+              else return this.state.searchItems;
+            })()}
             handleSelect={this.handleSelect}
           />
         )} />
