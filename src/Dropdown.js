@@ -5,6 +5,7 @@ class Dropdown extends Component {
     //This method passes the book and the shelf value to the handler
     onSelect = (e) => {
         this.props.handleSelect(this.props.book, e.target.value);
+        console.log(this.props.book.id)
     }
 
     render() {

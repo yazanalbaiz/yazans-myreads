@@ -28,16 +28,34 @@ class BooksApp extends React.Component {
       });
   }
 
-  handleInput = (e) => {
-    const query = e.target.value.trim();
+  handleInput = async (e) => {
+    const query = e.target.value;
+    let results = [];
     this.setState({ query });
     if (query !== '') {
-      api.search(query)
-      .then(searchItems => this.setState({ searchItems }))
-      .catch(err =>  this.setState({ searchItems: [] }));
+      await api.search(query)
+      .then(searchItems => {
+        results.push(...searchItems)
+      })
+      .catch(err =>  {results =[];});
     } else {
-      this.setState({ searchItems: [] });
+      results = [];
     }
+
+    results = results.map(result => {
+      for(let book of this.state.books) {
+        if (book.id === result.id) return book;
+      }
+      return result;
+    })
+
+    this.setState({searchItems: results});
+    // searchItems => this.setState({ searchItems }))
+    //   .catch(err =>  this.setState({ searchItems: [] }));
+    // } else {
+    //   this.setState({ searchItems: [] });
+    // }
+
     // if (query !== '') {
     //   api.search(query)
     //   .then(async searchItems => {
